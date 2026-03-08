@@ -3,6 +3,8 @@
 import { useState, useMemo } from 'react';
 import { runSimulation, SCENARIOS, type SimulationParams } from '@/lib/simulation';
 import { Shield, TrendingUp, TrendingDown, Bitcoin, Wallet, ChevronRight, Zap, BarChart3, Users, Lock } from 'lucide-react';
+import WalletButton from '@/components/WalletButton';
+import DemoDashboard from '@/components/DemoDashboard';
 
 function formatUSD(n: number) {
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
@@ -44,11 +46,14 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#f7931a]/10 via-transparent to-transparent" />
         <div className="max-w-6xl mx-auto px-6 pt-16 pb-12 relative">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-lg bg-[#f7931a]/20 flex items-center justify-center">
-              <Shield className="w-5 h-5 text-[#f7931a]" />
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-[#f7931a]/20 flex items-center justify-center">
+                <Shield className="w-5 h-5 text-[#f7931a]" />
+              </div>
+              <span className="text-sm font-mono text-[#8b949e] tracking-wider uppercase">Reverse Bitcoin-Backed Premium Policy</span>
             </div>
-            <span className="text-sm font-mono text-[#8b949e] tracking-wider uppercase">Reverse Bitcoin-Backed Premium Policy</span>
+            <WalletButton />
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight">
             Your insurance premiums<br />
@@ -244,6 +249,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Interactive Demo Dashboard */}
+      <DemoDashboard />
 
       {/* Tech Stack */}
       <section className="max-w-6xl mx-auto px-6 py-16 border-t border-[#30363d]">
